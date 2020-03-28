@@ -1,0 +1,13 @@
+{
+  "name": "healthy-habits",
+  "version": "0.1.0",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "typescript": "^3.8.3"
+  },
+  "scripts": {
+    "build": "rm -rf build && tsc"
+  }
+}
