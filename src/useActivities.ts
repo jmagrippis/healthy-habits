@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useMemo } from 'react'
 import store from 'store2'
 
 import { Activity, Status } from './types'
@@ -12,6 +12,8 @@ type ActivitiesMap = { [dateHas: string]: Activity[] }
 export const useActivities = (): {
   activities: ActivitiesMap
   completeActivity: (activity: Activity, dateHash?: string) => void
+  consecutiveStreak: number
+  totalActivitiesCompletedCount: number
 } => {
   const currentDateHash = getCurrentDateHash()
   const [activities, setActivities] = useState<ActivitiesMap>(
@@ -46,5 +48,25 @@ export const useActivities = (): {
     [activities, setActivities]
   )
 
-  return { activities, completeActivity }
+  const totalActivitiesCompletedCount = useMemo(
+    () =>
+      Object.values(activities).reduce(
+        (totalCount, activitiesOfDay) =>
+          activitiesOfDay.reduce(
+            (count, activity) =>
+              activity.status === Status.Done ? count + 1 : count,
+            totalCount
+          ),
+        0
+      ),
+    [activities]
+  )
+
+  return {
+    activities,
+    completeActivity,
+    // does not actually check for consecutive days...
+    consecutiveStreak: Object.keys(activities).length,
+    totalActivitiesCompletedCount
+  }
 }

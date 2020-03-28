@@ -7,7 +7,12 @@ import { useActivities } from 'useActivities'
 import { getCurrentDateHash } from 'getCurrentDateHash'
 
 export const App = () => {
-  const { activities, completeActivity } = useActivities()
+  const {
+    activities,
+    completeActivity,
+    consecutiveStreak,
+    totalActivitiesCompletedCount
+  } = useActivities()
   const currentDateHash = getCurrentDateHash()
 
   const todaysActivities = activities[currentDateHash]
@@ -23,6 +28,13 @@ export const App = () => {
       ) : (
         'loading activities...'
       )}
+      <div>
+        Current days streak: <strong>{consecutiveStreak}</strong>
+      </div>
+      <div>
+        Total activities completed:{' '}
+        <strong>{totalActivitiesCompletedCount}</strong>
+      </div>
     </>
   )
 }
