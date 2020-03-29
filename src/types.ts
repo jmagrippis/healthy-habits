@@ -6,9 +6,17 @@ export enum Status {
 export type Activity = {
   id: string
   label: string
-  badge: string
-  value: number
+  category: Category
   status: Status
+}
+
+export enum Category {
+  Social = 'social',
+  Physical = 'physical',
+  Spiritual = 'spiritual',
+  Intellectual = 'intellectual',
+  Chores = 'chore',
+  Fun = 'fun',
 }
 
 export type Pet = {
