@@ -1,56 +1,73 @@
 import { useState, useEffect, useCallback, useMemo } from 'react'
 import store from 'store2'
+import moment from 'moment'
 
 import { Activity, Status } from './types'
 import { defaultActivities } from './defaultActivities'
-import { getCurrentDateHash } from './getCurrentDateHash'
+import { getCurrentDateHash, DATE_HASH_FORMAT } from './getCurrentDateHash'
 
 const LOCAL_STORAGE_KEY = 'activities'
 
 type ActivitiesMap = { [dateHas: string]: Activity[] }
 
-export const useActivities = (): {
-  activities: ActivitiesMap
+export const useActivities = (
+  currentDateHash = getCurrentDateHash()
+): {
+  activities: Activity[]
+  allActivities: ActivitiesMap
   completeActivity: (activity: Activity, dateHash?: string) => void
   consecutiveStreak: number
   totalActivitiesCompletedCount: number
 } => {
-  const currentDateHash = getCurrentDateHash()
-  const [activities, setActivities] = useState<ActivitiesMap>(
+  const [allActivities, setAllActivities] = useState<ActivitiesMap>(
+    // state starts with whatever we have in local storage
     store.get(LOCAL_STORAGE_KEY, { [currentDateHash]: defaultActivities })
   )
 
+  // every time `allActivities` changes, set it to local storage
   useEffect(() => {
-    store.set(LOCAL_STORAGE_KEY, activities)
-  }, [activities])
+    store.set(LOCAL_STORAGE_KEY, allActivities)
+  }, [allActivities])
 
+  // if there are no activities for the current date, add the default ones
   useEffect(() => {
-    if (activities && !activities[currentDateHash]) {
-      console.log(currentDateHash)
-      setActivities({
-        ...activities,
+    if (allActivities && !allActivities[currentDateHash]) {
+      setAllActivities({
+        ...allActivities,
         [currentDateHash]: defaultActivities
       })
     }
-  }, [activities, currentDateHash])
+  }, [allActivities, currentDateHash])
 
   const completeActivity = useCallback(
-    (activity, dateHash = getCurrentDateHash()) => {
-      if (!activities[dateHash]) return
+    (activity, dateHash = currentDateHash) => {
+      if (!allActivities[dateHash]) return
 
-      setActivities({
-        ...activities,
-        [dateHash]: activities[dateHash].map((a) =>
+      setAllActivities({
+        ...allActivities,
+        [dateHash]: allActivities[dateHash].map((a) =>
           a.id === activity.id ? { ...a, status: Status.Done } : a
         )
       })
     },
-    [activities, setActivities]
+    [allActivities, setAllActivities, currentDateHash]
   )
+
+  const consecutiveStreak = useMemo(() => {
+    let count = 0
+    const anchor = moment(currentDateHash)
+
+    while (allActivities[anchor.format(DATE_HASH_FORMAT)]) {
+      count++
+      anchor.subtract(1, 'day')
+    }
+
+    return count
+  }, [allActivities, currentDateHash])
 
   const totalActivitiesCompletedCount = useMemo(
     () =>
-      Object.values(activities).reduce(
+      Object.values(allActivities).reduce(
         (totalCount, activitiesOfDay) =>
           activitiesOfDay.reduce(
             (count, activity) =>
@@ -59,14 +76,14 @@ export const useActivities = (): {
           ),
         0
       ),
-    [activities]
+    [allActivities]
   )
 
   return {
-    activities,
+    activities: allActivities[currentDateHash],
+    allActivities,
     completeActivity,
-    // does not actually check for consecutive days...
-    consecutiveStreak: Object.keys(activities).length,
+    consecutiveStreak,
     totalActivitiesCompletedCount
   }
 }

@@ -4,7 +4,6 @@ import { Header } from './Header/Header'
 import { Checklist } from './Checklist/Checklist'
 
 import { useActivities } from 'useActivities'
-import { getCurrentDateHash } from 'getCurrentDateHash'
 
 export const App = () => {
   const {
@@ -13,16 +12,13 @@ export const App = () => {
     consecutiveStreak,
     totalActivitiesCompletedCount
   } = useActivities()
-  const currentDateHash = getCurrentDateHash()
-
-  const todaysActivities = activities[currentDateHash]
 
   return (
     <>
       <Header />
-      {todaysActivities ? (
+      {activities ? (
         <Checklist
-          activities={todaysActivities}
+          activities={activities}
           completeActivity={completeActivity}
         />
       ) : (
