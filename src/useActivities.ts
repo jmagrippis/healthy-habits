@@ -34,7 +34,7 @@ export const useActivities = (
     if (allActivities && !allActivities[currentDateHash]) {
       setAllActivities({
         ...allActivities,
-        [currentDateHash]: defaultActivities
+        [currentDateHash]: defaultActivities,
       })
     }
   }, [allActivities, currentDateHash])
@@ -47,7 +47,7 @@ export const useActivities = (
         ...allActivities,
         [dateHash]: allActivities[dateHash].map((a) =>
           a.id === activity.id ? { ...a, status: Status.Done } : a
-        )
+        ),
       })
     },
     [allActivities, setAllActivities, currentDateHash]
@@ -84,6 +84,6 @@ export const useActivities = (
     allActivities,
     completeActivity,
     consecutiveStreak,
-    totalActivitiesCompletedCount
+    totalActivitiesCompletedCount,
   }
 }

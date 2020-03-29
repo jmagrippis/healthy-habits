@@ -8,5 +8,5 @@ export const defaultPets = [
     id: '2',
     label: 'cat',
     image: 'cat.png',
-  }
-];
+  },
+]

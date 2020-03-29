@@ -1,12 +1,17 @@
-import React from "react";
+import React from 'react'
+import styled from 'styled-components'
 
-import { Header } from "./Header/Header";
-import { Checklist } from "./Checklist/Checklist";
-import { Pets } from "./Pets/Pets";
+import { Header } from './Header/Header'
+import { Checklist } from './Checklist/Checklist'
+import { Pets } from './Pets/Pets'
 
-import { useActivities } from "useActivities";
-import { defaultPets } from "../defaultPets";
-import {MainContainer} from "./MainContainer";
+import { useActivities } from 'useActivities'
+import { defaultPets } from '../defaultPets'
+
+export const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+`
 
 export const App = () => {
   const {
@@ -14,13 +19,13 @@ export const App = () => {
     completeActivity,
     consecutiveStreak,
     totalActivitiesCompletedCount,
-  } = useActivities();
+  } = useActivities()
 
   return (
     <>
       <Header />
       {activities ? (
-        <MainContainer>
+        <Container>
           <Checklist
             activities={activities}
             completeActivity={completeActivity}
@@ -29,19 +34,19 @@ export const App = () => {
             totalActivitiesCompletedCount={totalActivitiesCompletedCount}
             pets={defaultPets}
           />
-        </MainContainer>
+        </Container>
       ) : (
-        "loading activities..."
+        'loading activities...'
       )}
       <div>
         Current days streak: <strong>{consecutiveStreak}</strong>
       </div>
       <div>
-        Total activities completed:{" "}
+        Total activities completed:{' '}
         <strong>{totalActivitiesCompletedCount}</strong>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default App;
+export default App
