@@ -1,0 +1,163 @@
+import { Category, Status, Activity } from 'types'
+
+export const categoriesToActivities: { [category in Category]: Activity[] } = {
+  [Category.Social]: [
+    {
+      id: 'video chat with a friend or family',
+      label: 'video chat with a friend or family',
+      category: Category.Social,
+      status: Status.Pending,
+      badge: 'phone.png',
+    },
+    {
+      id: 'call one of your friends or family',
+      label: 'call one of your friends or family',
+      category: Category.Social,
+      status: Status.Pending,
+      badge: 'phone.png',
+    },
+    {
+      id: 'send a selfie to a friend or family',
+      label: 'send a selfie to a friend or family',
+      category: Category.Social,
+      status: Status.Pending,
+      badge: 'phone.png',
+    },
+    {
+      id: 'send a card or small gift to a loved one',
+      label: 'send a card or small gift to a loved one',
+      category: Category.Social,
+      status: Status.Pending,
+      badge: 'phone.png',
+    },
+  ],
+  [Category.Physical]: [
+    {
+      id: 'cook a healthy meal',
+      label: 'cook a healthy meal',
+      category: Category.Physical,
+      status: Status.Pending,
+      badge: 'exercise.png',
+    },
+    {
+      id: 'practice yoga',
+      label: 'practice yoga',
+      category: Category.Physical,
+      status: Status.Pending,
+      badge: 'exercise.png',
+    },
+    {
+      id: 'follow a workout video',
+      label: 'follow a workout video',
+      category: Category.Physical,
+      status: Status.Pending,
+      badge: 'exercise.png',
+    },
+  ],
+  [Category.Spiritual]: [
+    {
+      id: 'write down something you’re grateful for',
+      label: 'write down something you’re grateful for',
+      category: Category.Spiritual,
+      status: Status.Pending,
+      badge: 'heart.png',
+    },
+    {
+      id: 'listen to a new piece of music',
+      label: 'listen to a new piece of music',
+      category: Category.Spiritual,
+      status: Status.Pending,
+      badge: 'heart.png',
+    },
+    {
+      id: 'listen to your favourite song',
+      label: 'listen to your favourite song',
+      category: Category.Spiritual,
+      status: Status.Pending,
+      badge: 'heart.png',
+    },
+  ],
+  [Category.Intellectual]: [
+    {
+      id: 'read a book',
+      label: 'read a book',
+      category: Category.Intellectual,
+      status: Status.Pending,
+      badge: 'bulb.png',
+    },
+    {
+      id: 'spend half an hour learning something new',
+      label: 'spend half an hour learning something new',
+      category: Category.Intellectual,
+      status: Status.Pending,
+      badge: 'bulb.png',
+    },
+    {
+      id: 'do a puzzle',
+      label: 'do a puzzle',
+      category: Category.Intellectual,
+      status: Status.Pending,
+      badge: 'bulb.png',
+    },
+    {
+      id: 'listen to your favourite song',
+      label: 'listen to your favourite song',
+      category: Category.Intellectual,
+      status: Status.Pending,
+      badge: 'bulb.png',
+    },
+  ],
+  [Category.Chores]: [
+    {
+      id: 'do shopping for groceries',
+      label: 'do shopping for groceries',
+      category: Category.Chores,
+      status: Status.Pending,
+      badge: 'house.png',
+    },
+    {
+      id: 'clean your space',
+      label: 'clean your space',
+      category: Category.Chores,
+      status: Status.Pending,
+      badge: 'house.png',
+    },
+    {
+      id: 'do some laundry',
+      label: 'do some laundry',
+      category: Category.Chores,
+      status: Status.Pending,
+      badge: 'house.png',
+    },
+  ],
+  [Category.Fun]: [
+    {
+      id: 'draw a picture of a puppy',
+      label: 'draw a picture of a puppy',
+      category: Category.Fun,
+      status: Status.Pending,
+      badge: 'notes.png',
+    },
+    {
+      id: 'watch a movie',
+      label: 'watch a movie',
+      category: Category.Fun,
+      status: Status.Pending,
+      badge: 'notes.png',
+    },
+    {
+      id: 'play a game',
+      label: 'play a game',
+      category: Category.Fun,
+      status: Status.Pending,
+      badge: 'notes.png',
+    },
+    {
+      id: 'take a photo',
+      label: 'take a photo',
+      category: Category.Fun,
+      status: Status.Pending,
+      badge: 'notes.png',
+    },
+  ],
+}

@@ -8,6 +8,7 @@ export type Activity = {
   label: string
   category: Category
   status: Status
+  badge: string
 }
 
 export enum Category {
