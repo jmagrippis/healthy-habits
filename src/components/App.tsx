@@ -1,5 +1,4 @@
 import React from 'react'
-import styled from 'styled-components'
 
 import { Header } from './Header/Header'
 import { Checklist } from './Checklist/Checklist'
@@ -9,10 +8,13 @@ import { Footer } from './Footer/Footer'
 import { useActivities } from 'useActivities'
 import { defaultPets } from '../defaultPets'
 
-export const Container = styled.div`
-  display: flex;
-  flex-direction: row;
-`
+const getPetsToShow = (
+  totalActivitiesCompletedCount: number,
+  pets = defaultPets
+) => {
+  const petCount = Math.floor(totalActivitiesCompletedCount / 2)
+  return pets.slice(0, petCount)
+}
 
 export const App = () => {
   const {
@@ -22,20 +24,17 @@ export const App = () => {
     totalActivitiesCompletedCount,
   } = useActivities()
 
+  const pets = getPetsToShow(totalActivitiesCompletedCount)
+
   return (
     <>
       <Header />
+      <Pets pets={pets} />
       {activities ? (
-        <Container>
-          <Checklist
-            activities={activities}
-            completeActivity={completeActivity}
-          />
-          <Pets
-            totalActivitiesCompletedCount={totalActivitiesCompletedCount}
-            pets={defaultPets}
-          />
-        </Container>
+        <Checklist
+          activities={activities}
+          completeActivity={completeActivity}
+        />
       ) : (
         'loading activities...'
       )}

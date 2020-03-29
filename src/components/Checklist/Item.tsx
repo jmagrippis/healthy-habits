@@ -11,14 +11,22 @@ type Props = {
 const Container = styled.li`
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 1rem 2rem;
-  margin-bottom: 1rem;
   cursor: pointer;
+  &:not(:last-child) {
+    border-bottom: 1px solid #81e6d9;
+  }
 `
 
 const Badge = styled.img`
   max-width: 5rem;
   border-radius: 50%;
+  margin-right: 1rem;
+`
+
+const Label = styled.span`
+  flex: 1 0;
   margin-right: 1rem;
 `
 
@@ -29,7 +37,7 @@ const Checkbox = styled.img`
 export const Item = ({ activity, onClick }: Props) => (
   <Container onClick={() => onClick(activity)}>
     <Badge src={activity.badge} alt="badge icon for activity" />
-    <span>{activity.label}</span>
+    <Label>{activity.label}</Label>
     <Checkbox
       src={
         activity.status === Status.Done
