@@ -115,11 +115,6 @@ export const categoriesToActivities: {
   ],
   [Category.Fun]: [
     {
-      label: 'draw a picture of a puppy',
-      category: Category.Fun,
-      badge: 'notes.png',
-    },
-    {
       label: 'watch a movie',
       category: Category.Fun,
       badge: 'notes.png',
@@ -135,7 +130,7 @@ export const categoriesToActivities: {
       badge: 'notes.png',
     },
     {
-      label: 'draw a picture of your favourite animal puppy',
+      label: 'draw a picture of your favourite animal',
       category: Category.Fun,
       badge: 'notes.png',
     },

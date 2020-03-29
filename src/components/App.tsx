@@ -1,12 +1,13 @@
 import React from 'react'
 
-import { Header } from './Header/Header'
 import { Checklist } from './Checklist/Checklist'
 import { Pets } from './Pets/Pets'
 import { Footer } from './Footer/Footer'
 
 import { useActivities } from 'useActivities'
 import { defaultPets } from '../defaultPets'
+import { Activity, Status } from '../types'
+import { Celebration } from './Celebration/Celebration'
 
 const getPetsToShow = (
   totalActivitiesCompletedCount: number,
@@ -14,6 +15,11 @@ const getPetsToShow = (
 ) => {
   const petCount = Math.floor(totalActivitiesCompletedCount / 2)
   return pets.slice(0, petCount)
+}
+
+const getRemainingActivityCount = (activities: Activity[]): number => {
+  return activities.filter((activity) => activity.status === Status.Pending)
+    .length
 }
 
 export const App = () => {
@@ -28,7 +34,6 @@ export const App = () => {
 
   return (
     <>
-      <Header />
       <Pets pets={pets} />
       {activities ? (
         <Checklist
@@ -38,6 +43,7 @@ export const App = () => {
       ) : (
         'loading activities...'
       )}
+      {getRemainingActivityCount(activities) === 0 ? <Celebration /> : null}
       <div>
         Current days streak: <strong>{consecutiveStreak}</strong>
       </div>
