@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { Header } from './Header/Header'
 import { Checklist } from './Checklist/Checklist'
 import { Pets } from './Pets/Pets'
+import { Footer } from './Footer/Footer'
 
 import { useActivities } from 'useActivities'
 import { defaultPets } from '../defaultPets'
@@ -45,6 +46,7 @@ export const App = () => {
         Total activities completed:{' '}
         <strong>{totalActivitiesCompletedCount}</strong>
       </div>
+      <Footer />
     </>
   )
 }
