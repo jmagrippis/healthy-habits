@@ -21,7 +21,6 @@ const Container = styled.li`
 
 const Badge = styled.img`
   max-width: 5rem;
-  border-radius: 50%;
   margin-right: 1rem;
 `
 
