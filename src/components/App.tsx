@@ -5,7 +5,6 @@ import { Checklist } from "./Checklist/Checklist";
 import { Pets } from "./Pets/Pets";
 
 import { useActivities } from "useActivities";
-import { getCurrentDateHash } from "getCurrentDateHash";
 import { defaultPets } from "../defaultPets";
 import {MainContainer} from "./MainContainer";
 
@@ -16,17 +15,14 @@ export const App = () => {
     consecutiveStreak,
     totalActivitiesCompletedCount,
   } = useActivities();
-  const currentDateHash = getCurrentDateHash();
-
-  const todaysActivities = activities[currentDateHash];
 
   return (
     <>
       <Header />
-      {todaysActivities ? (
+      {activities ? (
         <MainContainer>
           <Checklist
-            activities={todaysActivities}
+            activities={activities}
             completeActivity={completeActivity}
           />
           <Pets
