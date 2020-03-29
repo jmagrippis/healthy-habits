@@ -8,7 +8,8 @@ type Props = {
 }
 
 const Container = styled.div`
-  flex: 0 0 100px;
+  flex: 0 0 108px;
+  padding: 0 0.5rem;
 `
 
 export const Pets = ({ pets }: Props) => (
