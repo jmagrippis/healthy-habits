@@ -1,12 +1,12 @@
 export const defaultPets = [
   {
     id: '1',
-    label: 'mouse',
-    image: 'mouse.gif',
+    label: 'cat',
+    image: 'cat.gif',
   },
   {
     id: '2',
-    label: 'cat',
-    image: 'cat.gif',
+    label: 'mouse',
+    image: 'mouse.gif',
   },
 ]

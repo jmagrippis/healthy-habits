@@ -1,9 +1,15 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
+
+const grow = keyframes`
+  0%   {font-size: 0;}
+  100%  {font-size: 1rem;}
+`
 
 const ConfettiTextContainer = styled.div`
   display: flex;
   align-items: center;
+  animation: ${grow} 0.6s cubic-bezier(0.64, 0, 0.78, 0);
 `
 
 const Confetti = styled.img`
