@@ -18,8 +18,10 @@ const getPetsToShow = (
 }
 
 const getRemainingActivityCount = (activities: Activity[]): number => {
-  return activities.filter((activity) => activity.status === Status.Pending)
-    .length
+  return (
+    activities &&
+    activities.filter((activity) => activity.status === Status.Pending).length
+  )
 }
 
 export const App = () => {
