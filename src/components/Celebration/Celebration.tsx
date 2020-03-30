@@ -9,6 +9,7 @@ const grow = keyframes`
 const ConfettiTextContainer = styled.div`
   display: flex;
   align-items: center;
+  text-align: center;
   animation: ${grow} 0.6s cubic-bezier(0.64, 0, 0.78, 0);
 `
 
