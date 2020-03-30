@@ -9,4 +9,9 @@ export const defaultPets = [
     label: 'mouse',
     image: 'mouse.gif',
   },
+  {
+    id: '3',
+    label: 'fox',
+    image: 'fox.gif',
+  },
 ]

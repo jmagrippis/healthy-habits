@@ -3,6 +3,8 @@ import styled, { keyframes } from 'styled-components'
 
 const grow = keyframes`
   0%   {font-size: 0;}
+  50% {font-size: 0}
+  90% {font-size: 1.25rem}
   100%  {font-size: 1rem;}
 `
 
@@ -10,11 +12,16 @@ const ConfettiTextContainer = styled.div`
   display: flex;
   align-items: center;
   text-align: center;
-  animation: ${grow} 0.6s cubic-bezier(0.64, 0, 0.78, 0);
+  animation: ${grow} 2.4s cubic-bezier(0.5, 1, 0.89, 1);
 `
-
+const appear = keyframes`
+  0%   {opacity: 0;}
+  99% {opacity: 0}
+  100%  {opacity: 1;}
+`
 const Confetti = styled.img`
   padding: 15px;
+  animation: ${appear} 4s;
 `
 
 export const Celebration = () => (
