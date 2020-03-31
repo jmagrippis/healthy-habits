@@ -75,11 +75,6 @@ export const categoriesToActivities: {
       category: Category.Intellectual,
       badge: 'bulb.png',
     },
-    {
-      label: 'listen to your favourite song',
-      category: Category.Intellectual,
-      badge: 'bulb.png',
-    },
   ],
   [Category.Chores]: [
     {

@@ -13,7 +13,7 @@ const getPetsToShow = (
   totalActivitiesCompletedCount: number,
   pets = defaultPets
 ) => {
-  const petCount = Math.floor(totalActivitiesCompletedCount / 2)
+  const petCount = Math.floor(totalActivitiesCompletedCount / 3)
   return pets.slice(0, petCount)
 }
 
@@ -27,7 +27,7 @@ const getRemainingActivityCount = (activities: Activity[]): number => {
 export const App = () => {
   const {
     activities,
-    completeActivity,
+    toggleActivityComplete,
     consecutiveStreak,
     totalActivitiesCompletedCount,
   } = useActivities()
@@ -40,7 +40,7 @@ export const App = () => {
       {activities ? (
         <Checklist
           activities={activities}
-          completeActivity={completeActivity}
+          completeActivity={toggleActivityComplete}
         />
       ) : (
         'loading activities...'
