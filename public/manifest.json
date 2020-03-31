@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
   "name": "Healthy Habits",
-  "description": "Make the most of the lockdown, and carry on healthy habits beyond it still! Get suggestions on things to do to keep your mind and body sound, and be rewarded with cute pets.",
-  "version": "0.1.0",
+  "description": "Make the most of lockdown! Get ideas for things to do to keep your mind and body sound, and be rewarded with cute pets.",
+  "version": "0.1.1",
   "chrome_url_overrides": {
     "newtab": "index.html"
   },
