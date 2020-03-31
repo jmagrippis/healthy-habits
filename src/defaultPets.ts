@@ -11,6 +11,10 @@ export const defaultPets = [
     label: 'fox',
     image: 'fox.gif',
   },
+  {
+    label: 'rabbit',
+    image: 'rabbit.gif',
+  },
 ]
 
 export const unhatchedPets = [
