@@ -5,17 +5,9 @@ import { Pets } from './Pets/Pets'
 import { Footer } from './Footer/Footer'
 
 import { useActivities } from 'useActivities'
-import { defaultPets } from '../defaultPets'
 import { Activity, Status } from '../types'
 import { Celebration } from './Celebration/Celebration'
-
-const getPetsToShow = (
-  totalActivitiesCompletedCount: number,
-  pets = defaultPets
-) => {
-  const petCount = Math.floor(totalActivitiesCompletedCount / 3)
-  return pets.slice(0, petCount)
-}
+import { getPetsToShow } from '../getPetsToShow'
 
 const getRemainingActivityCount = (activities: Activity[]): number => {
   return (
@@ -30,9 +22,13 @@ export const App = () => {
     toggleActivityComplete,
     consecutiveStreak,
     totalActivitiesCompletedCount,
+    totalActivitiesCompletedTodayCount,
   } = useActivities()
 
-  const pets = getPetsToShow(totalActivitiesCompletedCount)
+  const pets = getPetsToShow(
+    totalActivitiesCompletedCount,
+    totalActivitiesCompletedTodayCount
+  )
 
   return (
     <>

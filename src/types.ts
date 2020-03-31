@@ -11,6 +11,8 @@ export type Activity = {
   badge: string
 }
 
+export type ActivitiesMap = { [dateHas: string]: Activity[] }
+
 export enum Category {
   Social = 'social',
   Physical = 'physical',
@@ -21,7 +23,6 @@ export enum Category {
 }
 
 export type Pet = {
-  id: string
   label: string
   image: string
 }

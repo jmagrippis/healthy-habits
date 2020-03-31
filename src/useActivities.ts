@@ -2,13 +2,11 @@ import { useCallback, useEffect, useMemo, useState } from 'react'
 import store from 'store2'
 import moment from 'moment'
 
-import { Activity, Status } from './types'
+import { ActivitiesMap, Activity, Status } from './types'
 import { DATE_HASH_FORMAT, getCurrentDateHash } from './getCurrentDateHash'
 import { pickRandomActivities } from './pickRandomActivities'
 
 const LOCAL_STORAGE_KEY = 'activities'
-
-type ActivitiesMap = { [dateHas: string]: Activity[] }
 
 export const useActivities = (
   currentDateHash = getCurrentDateHash()
@@ -18,6 +16,7 @@ export const useActivities = (
   toggleActivityComplete: (activity: Activity, dateHash?: string) => void
   consecutiveStreak: number
   totalActivitiesCompletedCount: number
+  totalActivitiesCompletedTodayCount: number
 } => {
   const [allActivities, setAllActivities] = useState<ActivitiesMap>(
     // state starts with whatever we have in local storage
@@ -87,11 +86,18 @@ export const useActivities = (
     [allActivities]
   )
 
+  const totalActivitiesCompletedTodayCount = allActivities[
+    currentDateHash
+  ].reduce((count, activity) => {
+    return activity.status === Status.Done ? count + 1 : count
+  }, 0)
+
   return {
     activities: allActivities[currentDateHash],
     allActivities,
     toggleActivityComplete,
     consecutiveStreak,
     totalActivitiesCompletedCount,
+    totalActivitiesCompletedTodayCount,
   }
 }
