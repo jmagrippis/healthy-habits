@@ -1,5 +1,4 @@
 import { defaultPets, unhatchedPets } from './defaultPets'
-import { v4 as uuidv4 } from 'uuid'
 
 export const getPetsToShow = (
   totalActivitiesCompletedCount: number,
@@ -12,12 +11,9 @@ export const getPetsToShow = (
 
   const eggs = [...Array(eggCount)].map(() => ({
     ...unhatchedPets[0],
-    id: uuidv4(),
   }))
 
-  const pets = defaultPets
-    .slice(0, petCount)
-    .map((pet) => ({ ...pet, id: uuidv4() }))
+  const pets = defaultPets.slice(0, petCount)
 
-  return eggs.concat(pets)
+  return pets.concat(eggs).map((pet, index) => ({ ...pet, id: index }))
 }

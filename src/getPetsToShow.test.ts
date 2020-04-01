@@ -8,30 +8,30 @@ describe('getPetsToShow', () => {
     const petsC = getPetsToShow(9, 0)
 
     expect(petsA).toEqual([
-      { ...defaultPets[0], id: expect.any(String) },
-      { ...defaultPets[1], id: expect.any(String) },
+      { ...defaultPets[0], id: 0 },
+      { ...defaultPets[1], id: 1 },
     ])
     expect(petsB).toEqual([
-      { ...defaultPets[0], id: expect.any(String) },
-      { ...defaultPets[1], id: expect.any(String) },
+      { ...defaultPets[0], id: 0 },
+      { ...defaultPets[1], id: 1 },
     ])
     expect(petsC).toEqual([
-      { ...defaultPets[0], id: expect.any(String) },
-      { ...defaultPets[1], id: expect.any(String) },
-      { ...defaultPets[2], id: expect.any(String) },
+      { ...defaultPets[0], id: 0 },
+      { ...defaultPets[1], id: 1 },
+      { ...defaultPets[2], id: 2 },
     ])
   })
 
   it('gets an egg if the activities to earn the pet have been completed today', () => {
     const pets = getPetsToShow(3, 3)
-    expect(pets).toEqual([{ ...unhatchedPets[0], id: expect.any(String) }])
+    expect(pets).toEqual([{ ...unhatchedPets[0], id: 0 }])
   })
 
   it('gets multiple eggs if the activities to earn multiple pets have been completed today', () => {
     const pets = getPetsToShow(6, 6)
     expect(pets).toEqual([
-      { ...unhatchedPets[0], id: expect.any(String) },
-      { ...unhatchedPets[0], id: expect.any(String) },
+      { ...unhatchedPets[0], id: 0 },
+      { ...unhatchedPets[0], id: 1 },
     ])
   })
 })

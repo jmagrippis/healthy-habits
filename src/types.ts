@@ -21,7 +21,7 @@ export enum Category {
 }
 
 export type Pet = {
-  id: string
+  id: number
   label: string
   image: string
 }

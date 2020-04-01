@@ -13,7 +13,7 @@ export type ActivitiesMap = { [dateHash: string]: Activity[] }
 export const useActivities = (
   currentDateHash = getCurrentDateHash()
 ): {
-  activities: Activity[]
+  activities?: Activity[]
   allActivities: ActivitiesMap
   toggleActivityComplete: (activity: Activity, dateHash?: string) => void
   consecutiveStreak: number
@@ -88,12 +88,11 @@ export const useActivities = (
     [allActivities]
   )
 
-  const totalActivitiesCompletedTodayCount = allActivities[
-    currentDateHash
-  ].reduce(
-    (count, activity) => (activity.status === Status.Done ? count + 1 : count),
-    0
-  )
+  const totalActivitiesCompletedTodayCount = allActivities[currentDateHash]
+    ? allActivities[currentDateHash].reduce((count, activity) => {
+        return activity.status === Status.Done ? count + 1 : count
+      }, 0)
+    : 0
 
   return {
     activities: allActivities[currentDateHash],
