@@ -5,6 +5,6 @@ import App from './App'
 
 test('renders', () => {
   const { getByText } = render(<App />)
-  const header = getByText(/healthy habits/i)
+  const header = getByText(/#BuildforCOVID19/i)
   expect(header).toBeInTheDocument()
 })
