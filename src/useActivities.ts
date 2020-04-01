@@ -8,12 +8,12 @@ import { pickRandomActivities } from './pickRandomActivities'
 
 const LOCAL_STORAGE_KEY = 'activities'
 
-export type ActivitiesMap = { [dateHash: string]: Activity[] }
+export type ActivitiesMap = Partial<{ [dateHash: string]: Activity[] }>
 
 export const useActivities = (
   currentDateHash = getCurrentDateHash()
 ): {
-  activities: Activity[]
+  activities?: Activity[]
   allActivities: ActivitiesMap
   toggleActivityComplete: (activity: Activity, dateHash?: string) => void
   consecutiveStreak: number
@@ -42,11 +42,12 @@ export const useActivities = (
 
   const toggleActivityComplete = useCallback(
     (activity, dateHash = currentDateHash) => {
-      if (!allActivities[dateHash]) return
+      const activitiesOfDay = allActivities[dateHash]
+      if (!activitiesOfDay) return
 
       setAllActivities({
         ...allActivities,
-        [dateHash]: allActivities[dateHash].map((a) =>
+        [dateHash]: activitiesOfDay.map((a) =>
           a.id === activity.id
             ? {
                 ...a,
@@ -78,25 +79,30 @@ export const useActivities = (
     () =>
       Object.values(allActivities).reduce(
         (totalCount, activitiesOfDay) =>
-          activitiesOfDay.reduce(
-            (count, activity) =>
-              activity.status === Status.Done ? count + 1 : count,
-            totalCount
-          ),
+          activitiesOfDay
+            ? activitiesOfDay.reduce(
+                (count, activity) =>
+                  activity.status === Status.Done ? count + 1 : count,
+                totalCount
+              )
+            : totalCount,
         0
       ),
     [allActivities]
   )
 
-  const totalActivitiesCompletedTodayCount = allActivities[
-    currentDateHash
-  ].reduce(
-    (count, activity) => (activity.status === Status.Done ? count + 1 : count),
-    0
-  )
+  const todaysActivities = allActivities[currentDateHash]
+
+  const totalActivitiesCompletedTodayCount = todaysActivities
+    ? todaysActivities.reduce(
+        (count, activity) =>
+          activity.status === Status.Done ? count + 1 : count,
+        0
+      )
+    : 0
 
   return {
-    activities: allActivities[currentDateHash],
+    activities: todaysActivities,
     allActivities,
     toggleActivityComplete,
     consecutiveStreak,

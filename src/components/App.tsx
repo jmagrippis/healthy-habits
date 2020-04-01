@@ -41,7 +41,9 @@ export const App = () => {
       ) : (
         'loading activities...'
       )}
-      {getRemainingActivityCount(activities) === 0 ? <Celebration /> : null}
+      {activities && getRemainingActivityCount(activities) === 0 ? (
+        <Celebration />
+      ) : null}
       <div>
         Current days streak: <strong>{consecutiveStreak}</strong>
       </div>
