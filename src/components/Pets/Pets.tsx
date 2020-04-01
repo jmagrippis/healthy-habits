@@ -1,6 +1,5 @@
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
-import { v4 as uuidv4 } from 'uuid'
 
 import { Pet } from 'types'
 
@@ -27,7 +26,7 @@ const Image = styled.img`
 export const Pets = ({ pets }: Props) => (
   <Container>
     {pets.map((pet) => (
-      <Image key={uuidv4()} src={pet.image} alt={pet.label} />
+      <Image key={pet.id} src={pet.image} alt={pet.label} />
     ))}
   </Container>
 )

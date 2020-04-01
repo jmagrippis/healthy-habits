@@ -2,11 +2,13 @@ import { useCallback, useEffect, useMemo, useState } from 'react'
 import store from 'store2'
 import moment from 'moment'
 
-import { ActivitiesMap, Activity, Status } from './types'
+import { Activity, Status } from './types'
 import { DATE_HASH_FORMAT, getCurrentDateHash } from './getCurrentDateHash'
 import { pickRandomActivities } from './pickRandomActivities'
 
 const LOCAL_STORAGE_KEY = 'activities'
+
+export type ActivitiesMap = { [dateHash: string]: Activity[] }
 
 export const useActivities = (
   currentDateHash = getCurrentDateHash()
@@ -88,9 +90,10 @@ export const useActivities = (
 
   const totalActivitiesCompletedTodayCount = allActivities[
     currentDateHash
-  ].reduce((count, activity) => {
-    return activity.status === Status.Done ? count + 1 : count
-  }, 0)
+  ].reduce(
+    (count, activity) => (activity.status === Status.Done ? count + 1 : count),
+    0
+  )
 
   return {
     activities: allActivities[currentDateHash],
