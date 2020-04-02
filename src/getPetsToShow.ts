@@ -9,10 +9,7 @@ export const getPetsToShow = (
     (totalActivitiesCompletedCount - totalActivitiesCompletedTodayCount) / 3
   )
 
-  const eggs = [...Array(eggCount)].map(() => ({
-    ...unhatchedPets[0],
-  }))
-
+  const eggs = unhatchedPets.slice(0, eggCount)
   const pets = defaultPets.slice(0, petCount)
 
   return pets.concat(eggs).map((pet, index) => ({ ...pet, id: index }))

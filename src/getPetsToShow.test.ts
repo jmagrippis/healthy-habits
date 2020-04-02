@@ -31,7 +31,7 @@ describe('getPetsToShow', () => {
     const pets = getPetsToShow(6, 6)
     expect(pets).toEqual([
       { ...unhatchedPets[0], id: 0 },
-      { ...unhatchedPets[0], id: 1 },
+      { ...unhatchedPets[1], id: 1 },
     ])
   })
 })

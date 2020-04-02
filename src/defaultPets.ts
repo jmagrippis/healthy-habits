@@ -1,7 +1,7 @@
 export const defaultPets = [
   {
-    label: 'cat',
-    image: 'cat.gif',
+    label: 'catA',
+    image: 'catA.gif',
   },
   {
     label: 'mouse',
@@ -15,11 +15,19 @@ export const defaultPets = [
     label: 'rabbit',
     image: 'rabbit.gif',
   },
+  {
+    label: 'catB',
+    image: 'catB.gif',
+  },
 ]
 
 export const unhatchedPets = [
   {
-    label: 'egg',
-    image: 'egg.gif',
+    label: 'eggA',
+    image: 'eggA.gif',
+  },
+  {
+    label: 'eggB',
+    image: 'eggB.gif',
   },
 ]
