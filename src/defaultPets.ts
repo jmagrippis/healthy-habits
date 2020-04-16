@@ -1,33 +1,33 @@
 export const defaultPets = [
   {
     label: 'catA',
-    image: 'catA.gif',
+    image: 'pets/catA.gif',
   },
   {
     label: 'mouse',
-    image: 'mouse.gif',
+    image: 'pets/mouse.gif',
   },
   {
     label: 'fox',
-    image: 'fox.gif',
+    image: 'pets/fox.gif',
   },
   {
     label: 'rabbit',
-    image: 'rabbit.gif',
+    image: 'pets/rabbit.gif',
   },
   {
     label: 'catB',
-    image: 'catB.gif',
+    image: 'pets/catB.gif',
   },
 ]
 
 export const unhatchedPets = [
   {
     label: 'eggA',
-    image: 'eggA.gif',
+    image: 'pets/eggA.gif',
   },
   {
     label: 'eggB',
-    image: 'eggB.gif',
+    image: 'pets/eggB.gif',
   },
 ]
