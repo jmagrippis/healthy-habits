@@ -67,15 +67,14 @@ export const useActivities = (
     let count = 0
     const anchor = moment(currentDateHash)
 
-    while (allActivities[anchor.format(DATE_HASH_FORMAT)]) {
-      const daysActivities = allActivities[anchor.format(DATE_HASH_FORMAT)]
-      if (
-        daysActivities &&
-        daysActivities.some((activity) => activity.status === Status.Done)
-      ) {
-        count++
+    let daysActivities = allActivities[anchor.format(DATE_HASH_FORMAT)]
+    while (daysActivities) {
+      if (daysActivities.every((activity) => activity.status !== Status.Done)) {
+        break
       }
+      count++
       anchor.subtract(1, 'day')
+      daysActivities = allActivities[anchor.format(DATE_HASH_FORMAT)]
     }
 
     return count
